@@ -24,25 +24,12 @@ public class Snake {
     }
 
     public void moveSnake() {
-        for (Case c : body) {
-            switch (c.direction) {
-                case "UP":
-                    c.y--;
-                    break;
-                case "DOWN":
-                    c.y++;
-                    break;
-                case "LEFT":
-                    c.x--;
-                    break;
-                case "RIGHT":
-                    c.x++;
-                    break;
-                default:
-                    return;
-            }
-        }
-
+        Case previous_head = body.get(body.length-1);
+        // Créer la prochaine tête
+        addTile();
+        body.get(body.length-1).direction = previous_head;
+        // Supprimer l'ancienne
+        body.remove(previous_head);
     }
 
     public void addTile() {
